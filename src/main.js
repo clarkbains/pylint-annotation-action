@@ -52,12 +52,13 @@ async function run() {
 
     let title = 'No issues have been found!'
     if (conclusion !== 'success') {
-      title = 'Pylint has some suggestions!'
+      title = `Found ${numAnnotations} issue(s)`
     }
 
     let summary = 'No issues have been found!'
     if (conclusion !== 'success') {
-      summary = 'Pylint has some suggestions!' + trimmedWarning
+      summary =
+        `Pylint has detected ${numAnnotations} issue(s)` + trimmedWarning
     }
 
     const resp = await octokit.rest.checks.create({
